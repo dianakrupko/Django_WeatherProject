@@ -2,15 +2,21 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-# Create your views here.
-
 def index(request):
-    return render(request,'main/index.html')
+    return render(request, 'main/index.html')
 
 
-def about(request):
-    return render(request,'main/about.html')
+def authorization(request):
+    return render(request, 'main/authorization.html')
 
 
 def news(request):
-    return HttpResponse("<h4>Новини</h4>")
+    return render(request, 'main/news.html')
+
+
+def about(request):
+    return render(request, 'main/about.html')
+
+
+def contacts(request):
+    return render(request, 'main/contacts.html')
