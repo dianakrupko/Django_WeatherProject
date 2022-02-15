@@ -42,8 +42,8 @@ class Data:
 
     def my_db(self):
         for i in range(self.table_rows):
-            sql = "INSERT INTO Lviv (Date, T, dd, F) VALUES (?, ?, ?, ?);"
-            txt = self.name_file[20:27]
+            sql = "INSERT INTO data_lviv (date_time, T, dd, FF) VALUES (?, ?, ?, ?);"
+            txt = self.name_file[8:15]
             txt += "-"
             txt += "{:0>2} ".format(self.table['Число месяца'][i])
             txt += self.table['UTC'][i]
@@ -53,25 +53,24 @@ class Data:
 
 
 def delete_table(name_db):
-    sql = "DELETE FROM Lviv;"
+    sql = "DELETE FROM data_lviv;"
     connector = sqlite3.connect(name_db)
     connector.execute(sql)
     connector.commit()
 
 
-# def edit(name_inter):
-#     for i in range(12):
-#         txt = "static/main/my_data/2012-{:0>2}.xlsx".format(i+1)
-#         # txt = "static\main\my_data\\2012-{:0>2}.xlsx".format(i+1)
-#         print(txt)
-#         data = Data(txt, "db.sqlite3")
-#         data.edit_data(name_inter)
-#         print(546456)
-#         data.my_db()
+def edit(name_inter):
+    for i in range(12):
+        txt = "my_data/2012-{:0>2}.xlsx".format(i+1)
+        print(txt)
+        data = Data(txt, "db.sqlite3")
+        data.edit_data(name_inter)
+        print(546456)
+        data.my_db()
 
 
 # data1 = Data("static/main/my_data/2012-01.xlsx", "db.sqlite3")
 # data1.edit_data("linear")
 # data1.my_db()
-# delete_table("db.sqlite3")
-# edit("linear")
+delete_table("db.sqlite3")
+edit("linear")
