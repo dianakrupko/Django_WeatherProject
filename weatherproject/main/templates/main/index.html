@@ -5,9 +5,26 @@
 {% block content %}
 <div class="features">
 <!--    <h1>Головна сторінка</h1>-->
-<!--    <p>ІнфаІнфаІнфаІнфаІнфаІнфаІнфаІнфаІнфаІнфа</p>-->
-    <button class="btn btn-warning">Переглянути дані</button>
-    <button class="btn btn-warning">Інтерпритувати</button>
+    <p>Виберіть місяць для перегляду даних</p>
+    <form action="formdata" method="post" id="data"></form>
+<p><select name="list1" form="data">
+    <option>Виберіть із списку</option>
+    <option value="1">Січень</option>
+    <option value="2">Лютий</option>
+    <option value="3">Березень</option>
+    <option value="4">Квітень</option>
+    <option value="5">Травень</option>
+    <option value="6">Червень</option>
+    <option value="7">Липень</option>
+    <option value="8">Серпень</option>
+    <option value="9">Вересень</option>
+    <option value="10">Жовтень</option>
+    <option value="11">Листопад</option>
+    <option value="12">Грудень</option>
+
+</select></p>
+<p><input type="submit" value="Отправить" form="data"></p>
+
 </div>
 
 
