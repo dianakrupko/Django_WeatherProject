@@ -1,0 +1,22 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Головна сторінка{% endblock %}
+
+{% block content %}
+<div class="features">
+    <p>Виберіть інтерполяцію</p>
+    <form action="'data/interpolate/'+${value}" method="post" id="data"></form>
+<p><select name="list1" form="data">
+    <option>Виберіть із списку</option>
+    <option value="linear">Лінійна</option>
+    <option value="polynomial">Поліноміальна</option>
+    <option value="slinear">Слайнер</option>
+    <option value="cubic">Кубік</option>
+</select></p>
+<p><input type="submit" value="Отправить" form="data"></p>
+
+</div>
+
+
+<!--    {% include 'main/test.html' %}-->
+{% endblock %}

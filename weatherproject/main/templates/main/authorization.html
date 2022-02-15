@@ -3,14 +3,14 @@
 {% block title %}Авторизація{% endblock %}
 
 {% block content %}
-    <div class="features">
-
-    <form class="box" action="index.html" method="post">
+<div class="features" xmlns:th="http://www.w3.org/1999/xhtml">
+    <small th:text="${error}" class="text-danger"></small>
+    <form class="box" action="data/index" method="post">
+        {% csrf_token %}
             <h1>Login</h1>
-        <input type="text" name="" placeholder="Username">
-        <input type="password" name="" placeholder="Password">
+        <input type="text" name="username" id="username" placeholder="Username">
+        <input type="password" name="password" id="password" placeholder="Password">
         <input type="submit" name="" value="Login">
     </form>
-
     </div>
 {% endblock %}
