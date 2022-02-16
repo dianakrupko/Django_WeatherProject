@@ -72,5 +72,5 @@ def edit(name_inter):
 # data1 = Data("static/main/my_data/2012-01.xlsx", "db.sqlite3")
 # data1.edit_data("linear")
 # data1.my_db()
-delete_table("db.sqlite3")
-edit("linear")
+# delete_table("db.sqlite3")
+# edit("linear")
