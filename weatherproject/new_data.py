@@ -69,8 +69,19 @@ def edit(name_inter):
         data.my_db()
 
 
+def search(name_db, string):
+    sql = "SELECT * FROM data_lviv WHERE date_time LIKE '{:}%';".format(string)
+    print(sql)
+    connector = sqlite3.connect(name_db)
+    s = connector.execute(sql).fetchall()
+    for i in s:
+        print(i[0])
+        print(i[1])
+
+
 # data1 = Data("static/main/my_data/2012-01.xlsx", "db.sqlite3")
 # data1.edit_data("linear")
 # data1.my_db()
 # delete_table("db.sqlite3")
 # edit("linear")
+search("db.sqlite3", "2012-02")
