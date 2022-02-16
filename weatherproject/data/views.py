@@ -13,8 +13,12 @@ import new_data
 from new_data import delete_table
 
 
-def data_home(request):
-    return render(request, 'main/authorization.html')
+def data_home(request, month):
+    str = "2012-{:}".format(month)
+    data = {
+        "values": new_data.search("db.sqlite3", str)
+    }
+    return render(request, 'data/my_data.html', data)
 
 
 def data_all(request):

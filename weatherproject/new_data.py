@@ -74,9 +74,7 @@ def search(name_db, string):
     print(sql)
     connector = sqlite3.connect(name_db)
     s = connector.execute(sql).fetchall()
-    for i in s:
-        print(i[0])
-        print(i[1])
+    return s
 
 
 # data1 = Data("static/main/my_data/2012-01.xlsx", "db.sqlite3")
@@ -84,4 +82,4 @@ def search(name_db, string):
 # data1.my_db()
 # delete_table("db.sqlite3")
 # edit("linear")
-search("db.sqlite3", "2012-02")
+# search("db.sqlite3", "2012-02")

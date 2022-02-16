@@ -7,22 +7,36 @@
 <!--    <h1>Головна сторінка</h1>-->
     <p>Виберіть місяць для перегляду даних</p>
     <form action="formdata" method="post" id="data"></form>
-<p><select name="list1" form="data">
-    <option>Виберіть із списку</option>
-    <option value="1">Січень</option>
-    <option value="2">Лютий</option>
-    <option value="3">Березень</option>
-    <option value="4">Квітень</option>
-    <option value="5">Травень</option>
-    <option value="6">Червень</option>
-    <option value="7">Липень</option>
-    <option value="8">Серпень</option>
-    <option value="9">Вересень</option>
-    <option value="10">Жовтень</option>
-    <option value="11">Листопад</option>
-    <option value="12">Грудень</option>
-
-</select></p>
+<!--<p><select name="list1" form="data">-->
+<!--    <option>Виберіть із списку</option>-->
+<!--    <option value="1">Січень</option>-->
+<!--    <option value="2">Лютий</option>-->
+<!--    <option value="3">Березень</option>-->
+<!--    <option value="4">Квітень</option>-->
+<!--    <option value="5">Травень</option>-->
+<!--    <option value="6">Червень</option>-->
+<!--    <option value="7">Липень</option>-->
+<!--    <option value="8">Серпень</option>-->
+<!--    <option value="9">Вересень</option>-->
+<!--    <option value="10">Жовтень</option>-->
+<!--    <option value="11">Листопад</option>-->
+<!--    <option value="12">Грудень</option>-->
+<!--    -->
+<!--</select></p>-->
+            <div>
+            <a href="{% url 'data_home' '01' %}" class="btn-btn-danger">Січень</a>
+            <a href="{% url 'data_home' '02' %}" class="btn-btn-danger">Лютий</a>
+            <a href="{% url 'data_home' '03' %}" class="btn-btn-danger">Березень</a>
+            <a href="{% url 'data_home' '04' %}" class="btn-btn-danger">Квітень</a>
+            <a href="{% url 'data_home' '05' %}" class="btn-btn-danger">Травень</a>
+            <a href="{% url 'data_home' '06' %}" class="btn-btn-danger">Червень</a>
+            <a href="{% url 'data_home' '07' %}" class="btn-btn-danger">Липень</a>
+            <a href="{% url 'data_home' '08' %}" class="btn-btn-danger">Серпень</a>
+            <a href="{% url 'data_home' '09' %}" class="btn-btn-danger">Вересень</a>
+            <a href="{% url 'data_home' '10' %}" class="btn-btn-danger">Жовтень</a>
+            <a href="{% url 'data_home' '11' %}" class="btn-btn-danger">Листопад</a>
+            <a href="{% url 'data_home' '12' %}" class="btn-btn-danger">Грудень</a>
+            </div>
 <p><input type="submit" value="Отправить" form="data"></p>
 
 </div>
