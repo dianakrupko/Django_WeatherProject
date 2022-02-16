@@ -19,7 +19,7 @@ class Data:
     def edit_data(self, name_method):
         self.table['Число месяца'] = self.table['Число месяца'].interpolate(method=name_method)
         self.table['FF'] = self.table['FF'].interpolate(method=name_method)
-        self.table['T'] = self.table['T'].interpolate(method=name_method)
+        self.table['T'] = self.table['T'].interpolate(method=name_method, order=1)
         for i in range(self.table_rows):
             if not isnull(self.table['dd'][i]) and len(self.table['dd'][i]) > 3:
                 self.table['dd'][i] = my_dict[self.table['dd'][i]]

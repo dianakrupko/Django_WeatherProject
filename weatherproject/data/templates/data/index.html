@@ -4,20 +4,16 @@
 
 {% block content %}
 <div class="features" xmlns:th="http://www.w3.org/1999/xhtml">
-    <p>Виберіть інтерполяцію</p>
-<!--    <form action="int" method="post" id="data">-->
-<!--{% csrf_token %}-->
-<!--        </form>-->
-<!--<select id="inter" name="list1" form="data">-->
+    <p>{{int}}</p>
 
-<!--    {%for e in values%}-->
-<!--        <option href="'/data/interpolate/'+${e}" value="${e}">{{e}}</option>-->
-<!--    {%endfor%}-->
-<!--</select>-->
+    <p>Виберіть інтерполяцію, якщо бажаєте змінити</p>
 
-        {%for e in values%}
-            <button th:href="/data/interpolate/{{e}}">{{e}}</button>
-        {%endfor%}
+        <div>
+            <a href="{% url 'data_interpolate' 'linear' %}" class="btn-btn-danger">Лінійна</a>
+            <a href="{% url 'data_interpolate' 'polynomial' %}" class="btn-btn-danger">Поліноміальна</a>
+            <a href="{% url 'data_interpolate' 'cubic' %}" class="btn-btn-danger">Кубічна</a>
+            <a href="{% url 'data_interpolate' 'spline' %}" class="btn-btn-danger">Сплайн-інтерполяція</a>
+            </div>
 
 </div>
 

@@ -4,7 +4,8 @@ from .models import Lviv, Employee
 # Add this line to the beginning of relative.py file
 import sys
 sys.path.append('..')
-
+interp="Лінійна інтерполяція"
+my_dict={"linear": "Лінійна інтерполяція", "polynomial":"Поліноміальна інтерполяція", "cubic":"Кубічна інтерполяція", "spline": "Сплайн-інтерполяція"}
 # Now you can do imports from one directory top cause it is in the sys.path
 import new_data
 
@@ -22,22 +23,26 @@ def data_all(request):
 
 
 def data_index(request):
-    all_employee = Employee.objects.all()
+    # all_employee = Employee.objects.all()
     # for e in all_employee:
-        # if e.login == username and e.password == password:
-        #     return render(request, 'data/index.html')
-    # return render(request, 'main/authorization.html', {'error': "ERROR"})
+    #     if e.login == user and e.password == password:
     data = {
-        "values": ["linear", "polynomial"]
+        "values": ["linear", "polynomial"],
+        "int": str(interp)
     }
     return render(request, 'data/index.html', data)
+    # return render(request, 'main/authorization.html', {'error': "ERROR"})
 
 
-def data_interpolate(request):
+def data_interpolate(request, inter):
     print(4362536)
-    # print(list2)
-    r = request.GET.get("list2", "")
-    print(r)
-    new_data.py.delete_table("db.sqlite3")
-    return render(request, "data/index.html")
+    global interp
+    interp = my_dict[inter]
+    print(inter)
+    new_data.delete_table("db.sqlite3")
+    new_data.edit(inter)
+    data = {
+        "int": interp
+    }
+    return render(request, "data/index.html", data)
 
