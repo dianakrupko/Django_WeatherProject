@@ -1,10 +1,10 @@
 
 .box{
-    width: 300px;
-    padding: 200px;
+  width: 300px;
+    padding: 0px;
     position: absolute;
-    top: -10%;
-    left: 50%;
+    top: 0%;
+    left: 30%;
     transform: translate(-25%, 40%);
     background:none;
     text-align:center;

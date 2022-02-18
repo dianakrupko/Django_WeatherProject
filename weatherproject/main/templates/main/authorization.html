@@ -1,39 +1,9 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-    <meta charset="UTF-8">
-    <title>Authorization</title>
-<!--    <link rel="stylesheet" href="authorization.css">-->
-    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
-    <link rel="stylesheet" href="{% static 'main/css/authorization.css' %}">
-</head>
-<body>
-<aside>
-    <img src="{% static 'main/img/logo3.svg' %}" alt="Лого">
-    <span class="лого">Weather</span>
-    <h3>Навігація</h3>
-    <ul>
-        <a href="{% url 'home' %}">
-            <li><i class="fa-regular fa-house"></i>Головна</li>
-        </a>
-        <a href="{% url 'autorization' %}">
-            <li><i class="fa-regular fa-house"></i>Вхід для працівника</li>
-        </a>
-        <a href="{% url 'news' %}">
-            <li><i class="fa-regular fa-house"></i>Новини</li>
-        </a>
-        <a href="{% url 'about' %}">
-            <li><i class="fa-regular fa-book-open-cover"></i>Про нас</li>
-        </a>
-        <a href="">
-            <li><i class="fa-regular fa-address-book"></i>Контакти</li>
-        </a>
-    </ul>
-</aside>
+{% extends 'main/layout.html' %}
 
-<!--    <div xmlns:th="http://www.w3.org/1999/xhtml">-->
-<!--    <small th:text="${error}" class="text-danger"></small>-->
+{% block title %}Авторизація{% endblock %}
+
+{% block content %}
+
     <form class="box" action="data/index" method="post">
         {% csrf_token %}
             <h1>Вхід</h1>
@@ -41,7 +11,5 @@
         <input type="password" name="password" id="password" placeholder="Пароль">
         <input type="submit" name="" value="Увійти" >
     </form>
-<!--    </div>-->
-</body>
-</html>
 
+{% endblock %}
