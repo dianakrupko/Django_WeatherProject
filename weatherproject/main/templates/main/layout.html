@@ -39,6 +39,45 @@
         </a>
     </ul>
 </aside>
+<!--<aside class="aside2">-->
+<!--    <div class="container mt-5">-->
+
+<!--    <div class="row">-->
+
+
+<!--&lt;!&ndash;        <h1 class="col-5 offset-2" >Погода</h1>&ndash;&gt;-->
+<!--        <div class="col-5 offset-2">-->
+<!--            {% for info in all_info %}-->
+<!--            <div class="alert alert-info">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-10">-->
+<!--                        <h3><b> {{ info.city }}</b></h3><br>-->
+<!--                        <b>Температура: </b>{{ info.temp }}<sup>o</sup>C<br>-->
+<!--                        <b>Атмосферний: </b>{{ info.pressure}}кПа<br>-->
+<!--                        <b>Вологість повітря: </b>{{ info.humidity }}%<br>-->
+<!--                        <b>Швидкість вітру: </b>{{ info.speed }}м/с<br>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-3 offset-1">-->
+<!--                        <img src="http://openweathermap.org/img/w/{{ info.icon }}.png" alt="Фото погоди">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            {% endfor %}-->
+
+<!--        </div>-->
+<!--        <div class="col-5 offset-2">-->
+<!--            <form action="" method="post">-->
+<!--&lt;!&ndash;                <label for="city">Місто</label>&ndash;&gt;-->
+<!--                {% csrf_token %}-->
+<!--                {{ form.name }}-->
+
+<!--                <input type="submit" name="send" value="Погода" class="mt-2 btn btn-info">-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--</aside>-->
 <main>
     {% block content%}
     {% endblock %}
