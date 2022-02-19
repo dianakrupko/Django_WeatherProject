@@ -1,0 +1,60 @@
+
+
+{% extends 'main/layout.html' %}
+
+{% block title %}Головна сторінка{% endblock %}
+
+{% block content %}
+<!--<div class="features">-->
+<!--&lt;!&ndash;    <h1>Головна сторінка</h1>&ndash;&gt;-->
+<!--    <p>Виберіть місяць для перегляду даних</p>-->
+<!--    <form action="formdata" method="post" id="data"></form>-->
+
+<!--<p><select name="list1" form="data">-->
+<!--    <option>Виберіть із списку</option>-->
+<!--    <option value="1">Січень</option>-->
+<!--    <option value="2">Лютий</option>-->
+<!--    <option value="3">Березень</option>-->
+<!--    <option value="4">Квітень</option>-->
+<!--    <option value="5">Травень</option>-->
+<!--    <option value="6">Червень</option>-->
+<!--    <option value="7">Липень</option>-->
+<!--    <option value="8">Серпень</option>-->
+<!--    <option value="9">Вересень</option>-->
+<!--    <option value="10">Жовтень</option>-->
+<!--    <option value="11">Листопад</option>-->
+<!--    <option value="12">Грудень</option>-->
+
+
+<!--</select></p>-->
+<!--<p><input type="submit" value="Отримати дані" form="data"></p>-->
+
+
+<!--</div>-->
+
+
+
+
+
+
+    <div class="features">
+        <h1>Виберіть місяць для отримання даних:</h1>
+        <div class="">
+                <a href="{% url 'city_index' 'lviv' %}"><button class="btn btn-info">Львів</button></a>
+                <a href="{% url 'city_index' 'kharkiv' %}"><button class="btn btn-info">Харків</button></a>
+                <a href="{% url 'city_index' 'kyiv' %}"><button class="btn btn-info">Київ</button></a>
+                <a href="{% url 'city_index' 'odessa' %}"><button class="btn btn-info">Одеса</button></a>
+                <a href="{% url 'city_index' 'donetsk' %}"><button class="btn btn-info">Донецьк</button></a>
+                <a href="{% url 'city_index' 'luhansk' %}"><button class="btn btn-info">Луганськ</button></a>
+             </div>
+         <p>                                                    </p>
+
+
+    </div>
+
+
+
+
+
+<!--    {% include 'main/test.html' %}-->
+{% endblock %}

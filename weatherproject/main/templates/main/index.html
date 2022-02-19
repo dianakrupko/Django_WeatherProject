@@ -38,23 +38,23 @@
 
 
     <div class="features">
-        <h1>Виберіть місяць для отримання даних:</h1>
+        <h1>{{city}}</h1>
         <div class="">
-                <a href="{% url 'data_home' '01' %}"><button class="btn btn-info">Січень</button></a>
-                <a href="{% url 'data_home' '02' %}"><button class="btn btn-info">Лютий</button></a>
-                <a href="{% url 'data_home' '03' %}"><button class="btn btn-info">Березень</button></a>
-                <a href="{% url 'data_home' '04' %}"><button class="btn btn-info">Квітень</button></a>
-                <a href="{% url 'data_home' '05' %}"><button class="btn btn-info">Травень</button></a>
-                <a href="{% url 'data_home' '06' %}"><button class="btn btn-info">Червень</button></a>
+                <a href="{% url 'data_home' city '01' %}"><button class="btn btn-info">Січень</button></a>
+                <a href="{% url 'data_home' city '02' %}"><button class="btn btn-info">Лютий</button></a>
+                <a href="{% url 'data_home' city '03' %}"><button class="btn btn-info">Березень</button></a>
+                <a href="{% url 'data_home' city '04' %}"><button class="btn btn-info">Квітень</button></a>
+                <a href="{% url 'data_home' city '05' %}"><button class="btn btn-info">Травень</button></a>
+                <a href="{% url 'data_home' city '06' %}"><button class="btn btn-info">Червень</button></a>
              </div>
          <p>                                                    </p>
         <div class="">
-                <a href="{% url 'data_home' '07' %}"><button class="btn btn-info">Липень</button></a>
-                <a href="{% url 'data_home' '08' %}"><button class="btn btn-info">Серпень</button></a>
-                <a href="{% url 'data_home' '09' %}"><button class="btn btn-info">Вересень</button></a>
-                <a href="{% url 'data_home' '10' %}"><button class="btn btn-info">Жовтень</button></a>
-                <a href="{% url 'data_home' '11' %}"><button class="btn btn-info">Листопад</button></a>
-                <a href="{% url 'data_home' '12' %}"><button class="btn btn-info">Грудень</button></a>
+                <a href="{% url 'data_home' city '07' %}"><button class="btn btn-info">Липень</button></a>
+                <a href="{% url 'data_home' city '08' %}"><button class="btn btn-info">Серпень</button></a>
+                <a href="{% url 'data_home' city '09' %}"><button class="btn btn-info">Вересень</button></a>
+                <a href="{% url 'data_home' city '10' %}"><button class="btn btn-info">Жовтень</button></a>
+                <a href="{% url 'data_home' city '11' %}"><button class="btn btn-info">Листопад</button></a>
+                <a href="{% url 'data_home' city '12' %}"><button class="btn btn-info">Грудень</button></a>
         </div>
 
     </div>

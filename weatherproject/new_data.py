@@ -6,7 +6,7 @@ from pandas import isnull
 pd.options.mode.chained_assignment = None
 my_dict = {"Западный": "Західний", "Южный": "Південний", "Переменный": "Змінний", "Северный": "Північний", "Восточный": "Східний"}
 
-
+cities = ["lviv", "kyiv", "ivano_frankivsk", "dnipropetrovsk","donetsk","krivoy_rog", "luhansk", "odessa", "kharkiv", "simferopol"]
 class Data:
 
     def __init__(self, name_file, name_db):
@@ -27,8 +27,10 @@ class Data:
                 self.table['dd'][i] = "Штиль"
         self.table['dd'].fillna(method="pad", inplace=True)
         self.table['UTC'] = self.table['UTC'].interpolate(method=name_method)
-        for i in range(self.table_rows):
-            self.table['UTC'][i] = self.func(float(self.table['UTC'][i]))
+        # print(self.table['UTC'][0])
+        # for i in range(self.table_rows):
+        #     self.table['UTC'][i] = self.func(float(self.table['UTC'][i]))
+            # print(self.table['UTC'][i])
 
     def func(self, time: float):
         time = time*24
@@ -40,46 +42,67 @@ class Data:
         txt = "{hours:0>2}:{min}".format(hours=int(time // 1), min=min)
         return txt
 
-    def my_db(self):
+    def my_db(self, city):
         for i in range(self.table_rows):
-            sql = "INSERT INTO data_lviv (date_time, T, dd, FF) VALUES (?, ?, ?, ?);"
-            txt = self.name_file[8:15]
+            sql = "INSERT INTO data_{:} (date_time, T, dd, FF) VALUES (?, ?, ?, ?);".format(city)
+            txt = self.lala()
             txt += "-"
             txt += "{:0>2} ".format(self.table['Число месяца'][i])
-            txt += self.table['UTC'][i]
+            txt += self.func(float(self.table['UTC'][i]))
             # print(txt)
+            # print(self.table['UTC'][i])
             self.connector.execute(sql, (txt, int(self.table['T'][i]), self.table['dd'][i], int(self.table['FF'][i])))
         self.connector.commit()
 
+    def lala(self):
+        ind1 = 100
+        txt=""
+        ind2 = 100
+        for i in range(len(self.name_file)):
+            if self.name_file[i] == '/' and self.name_file[i - 1] != 's':
+                ind1 = i
+            if self.name_file[i] == '.':
+                ind2 = i
+            if ind1 < i < ind2:
+                txt += self.name_file[i]
+        return txt
+
 
 def delete_table(name_db):
-    sql = "DELETE FROM data_lviv;"
     connector = sqlite3.connect(name_db)
-    connector.execute(sql)
+    for city in cities:
+        sql = "DELETE FROM data_{:};".format(city)
+        print(sql)
+        connector.execute(sql)
     connector.commit()
 
 
 def edit(name_inter):
-    for i in range(12):
-        txt = "my_data/2012-{:0>2}.xlsx".format(i+1)
-        print(txt)
-        data = Data(txt, "db.sqlite3")
-        data.edit_data(name_inter)
-        print(546456)
-        data.my_db()
+
+    # cities = ["lviv", "Kyiv", "Ivano_Frankivsk", "Dnipropetrovsk","Donetsk","Krivoy_rog", "Luhansk", "Odessa", "Kharkiv"]
+    for city in cities:
+        for i in range(12):
+            txt = "datas/{:}/2012-{:0>2}.xlsx".format(city, i+1)
+            print(txt)
+            data = Data(txt, "db.sqlite3")
+            data.edit_data(name_inter)
+            print(546456)
+            data.my_db(city)
 
 
-def search(name_db, string):
-    sql = "SELECT * FROM data_lviv WHERE date_time LIKE '{:}%';".format(string)
+def search(name_db, string, city):
+    sql = "SELECT * FROM data_{:} WHERE date_time LIKE '{:}%';".format(city,string)
     print(sql)
     connector = sqlite3.connect(name_db)
     s = connector.execute(sql).fetchall()
     return s
 
 
-# data1 = Data("static/main/my_data/2012-01.xlsx", "db.sqlite3")
+# data1 = Data("datas/lviv/2012-01.xlsx", "db.sqlite3")
+# print(data1.lala("lviv"))
 # data1.edit_data("linear")
-# data1.my_db()
+# data1.my_db("lviv")
 # delete_table("db.sqlite3")
 # edit("linear")
 # search("db.sqlite3", "2012-02")
+

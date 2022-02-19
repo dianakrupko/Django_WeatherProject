@@ -13,10 +13,10 @@ import new_data
 from new_data import delete_table
 
 
-def data_home(request, month):
+def data_home(request, city, month):
     str = "2012-{:}".format(month)
     data = {
-        "values": new_data.search("db.sqlite3", str)
+        "values": new_data.search("db.sqlite3", str, city)
     }
     return render(request, 'data/my_data.html', data)
 
@@ -36,6 +36,13 @@ def data_index(request):
     }
     return render(request, 'data/index.html', data)
     # return render(request, 'main/authorization.html', {'error': "ERROR"})
+
+
+def city_index(request, city):
+    data = {
+        "city":city
+    }
+    return render(request, 'main/index.html',data)
 
 
 def data_interpolate(request, inter):

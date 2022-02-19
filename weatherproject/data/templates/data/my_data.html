@@ -12,6 +12,7 @@
 
 <div class="container">
   <h2>Таблиця за запитом</h2>
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
   <br>
   <table class="table table-bordered table-striped">
     <thead>
@@ -36,7 +37,16 @@
 
   <p></p>
 </div>
-
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 
 
 
