@@ -3,6 +3,17 @@
 {% block title %}Головна сторінка{% endblock %}
 
 {% block content %}
+<style>
+    .city{
+         font-size: 1.7em;
+    }
+    .col{
+        text-align: left;
+    }
+    .alert alert-info{
+        top:150%;
+        }
+</style>
 <div>
 
     <div class="row">
@@ -12,17 +23,20 @@
         <div class="col-5 offset-2">
             {% for info in all_info %}
             <div class="alert alert-info">
-                <div class="row">
-                    <div class="col-10">
-                        <h3><b> {{ info.city }}</b></h3><br>
+                <div class="col">
+                    <div class="col-8">
+
+                        <img src="http://openweathermap.org/img/w/{{ info.icon }}.png" alt="Фото погоди">
+                        <span class="city"><b> {{ info.city }}</b></span><br>
+
                         <b>Температура: </b>{{ info.temp }}<sup>o</sup>C<br>
-                        <b>Атмосферний: </b>{{ info.pressure}}кПа<br>
+                        <b>Атмосферний тиск: </b>{{ info.pressure}}кПа<br>
                         <b>Вологість повітря: </b>{{ info.humidity }}%<br>
                         <b>Швидкість вітру: </b>{{ info.speed }}м/с<br>
                     </div>
-                    <div class="col-md-3 offset-1">
-                        <img src="http://openweathermap.org/img/w/{{ info.icon }}.png" alt="Фото погоди">
-                    </div>
+<!--                    <div class="col-10">-->
+<!--                        <img src="http://openweathermap.org/img/w/{{ info.icon }}.png" alt="Фото погоди">-->
+<!--                    </div>-->
                 </div>
             </div>
             {% endfor %}
