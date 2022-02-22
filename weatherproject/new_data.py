@@ -17,8 +17,8 @@ class Data:
         self.cursor = self.connector.cursor()
 
     def edit_data(self, name_method):
-        self.table['Число месяца'] = self.table['Число месяца'].interpolate(method=name_method)
-        self.table['FF'] = self.table['FF'].interpolate(method=name_method)
+        self.table['Число месяца'] = self.table['Число месяца'].interpolate(method=name_method, order=1)
+        self.table['FF'] = self.table['FF'].interpolate(method=name_method, order=1)
         self.table['T'] = self.table['T'].interpolate(method=name_method, order=1)
         for i in range(self.table_rows):
             if not isnull(self.table['dd'][i]) and len(self.table['dd'][i]) > 3:
@@ -26,7 +26,7 @@ class Data:
             if isnull(self.table['dd'][i]) and self.table['FF'][i] == 0:
                 self.table['dd'][i] = "Штиль"
         self.table['dd'].fillna(method="pad", inplace=True)
-        self.table['UTC'] = self.table['UTC'].interpolate(method=name_method)
+        self.table['UTC'] = self.table['UTC'].interpolate(method=name_method, order=1)
         # print(self.table['UTC'][0])
         # for i in range(self.table_rows):
         #     self.table['UTC'][i] = self.func(float(self.table['UTC'][i]))
@@ -43,7 +43,7 @@ class Data:
         return txt
 
     def my_db(self, city):
-        for i in range(self.table_rows):
+        for i in range(self.table_rows-1):
             sql = "INSERT INTO data_{:} (date_time, T, dd, FF) VALUES (?, ?, ?, ?);".format(city)
             txt = self.lala()
             txt += "-"
@@ -103,6 +103,6 @@ def search(name_db, string, city):
 # data1.edit_data("linear")
 # data1.my_db("lviv")
 # delete_table("db.sqlite3")
-# edit("linear")
+# edit("polynomial")
 # search("db.sqlite3", "2012-02")
 
