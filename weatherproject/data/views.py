@@ -6,6 +6,8 @@ import sys
 sys.path.append('..')
 interp="Лінійна інтерполяція"
 my_dict={"linear": "Лінійна інтерполяція", "polynomial":"Поліноміальна інтерполяція", "cubic":"Кубічна інтерполяція", "spline": "Сплайн-інтерполяція"}
+cities = {"lviv": "Львів", "kyiv": "Київ", "ivano_frankivsk": "Івано-франківськ", "dnipropetrovsk": "Дніпропетровськ","donetsk": "Донецьк","krivoy_rog": "Кривий ріг", "luhansk": "Луганськ", "odessa":"Одеса", "kharkiv":"Харків", "simferopol":"Сімферополь"}
+months = {"01": "січень","02": "лютий","03": "березень","04": "квітень","05": "травень","06": "червень","07": "липень","08": "серпень","09": "вересень","10": "жовтень","11": "листопад","12": "грудень"}
 # Now you can do imports from one directory top cause it is in the sys.path
 import new_data
 
@@ -16,7 +18,9 @@ from new_data import delete_table
 def data_home(request, city, month):
     str = "2012-{:}".format(month)
     data = {
-        "values": new_data.search("db.sqlite3", str, city)
+        "values": new_data.search("db.sqlite3", str, city),
+        "city": cities[city],
+        "month": months[month]
     }
     return render(request, 'data/my_data.html', data)
 
@@ -40,6 +44,7 @@ def data_index(request):
 
 def city_index(request, city):
     data = {
+        "city_ua":cities[city],
         "city":city
     }
     return render(request, 'main/index.html', data)
