@@ -4,9 +4,13 @@ import pandas as pd
 from pandas import isnull
 
 pd.options.mode.chained_assignment = None
-my_dict = {"Западный": "Західний", "Южный": "Південний", "Переменный": "Змінний", "Северный": "Північний", "Восточный": "Східний"}
+my_dict = {"Западный": "Західний", "Южный": "Південний", "Переменный": "Змінний", "Северный": "Північний",
+           "Восточный": "Східний", "Ю-З": "Пд-Зх", "Ю-В": "Пд-Сх", "С-З": "Пн-Зх","С-В":"Пн-Сх"}
 
-cities = ["lviv", "kyiv", "ivano_frankivsk", "dnipropetrovsk","donetsk","krivoy_rog", "luhansk", "odessa", "kharkiv", "simferopol"]
+cities = ["lviv", "kyiv", "ivano_frankivsk", "dnipropetrovsk", "donetsk", "krivoy_rog", "luhansk", "odessa", "kharkiv",
+          "simferopol"]
+
+
 class Data:
 
     def __init__(self, name_file, name_db):
@@ -30,10 +34,10 @@ class Data:
         # print(self.table['UTC'][0])
         # for i in range(self.table_rows):
         #     self.table['UTC'][i] = self.func(float(self.table['UTC'][i]))
-            # print(self.table['UTC'][i])
+        # print(self.table['UTC'][i])
 
     def func(self, time: float):
-        time = time*24
+        time = time * 24
         minutes = time % 1
         if minutes:
             min = "30"
@@ -43,7 +47,7 @@ class Data:
         return txt
 
     def my_db(self, city):
-        for i in range(self.table_rows-1):
+        for i in range(self.table_rows - 1):
             sql = "INSERT INTO data_{:} (date_time, T, dd, FF) VALUES (?, ?, ?, ?);".format(city)
             txt = self.lala()
             txt += "-"
@@ -56,7 +60,7 @@ class Data:
 
     def lala(self):
         ind1 = 100
-        txt=""
+        txt = ""
         ind2 = 100
         for i in range(len(self.name_file)):
             if self.name_file[i] == '/' and self.name_file[i - 1] != 's':
@@ -78,11 +82,10 @@ def delete_table(name_db):
 
 
 def edit(name_inter):
-
     # cities = ["lviv", "Kyiv", "Ivano_Frankivsk", "Dnipropetrovsk","Donetsk","Krivoy_rog", "Luhansk", "Odessa", "Kharkiv"]
     for city in cities:
         for i in range(12):
-            txt = "datas/{:}/2012-{:0>2}.xlsx".format(city, i+1)
+            txt = "datas/{:}/2012-{:0>2}.xlsx".format(city, i + 1)
             print(txt)
             data = Data(txt, "db.sqlite3")
             data.edit_data(name_inter)
@@ -91,12 +94,11 @@ def edit(name_inter):
 
 
 def search(name_db, string, city):
-    sql = "SELECT * FROM data_{:} WHERE date_time LIKE '{:}%';".format(city,string)
+    sql = "SELECT * FROM data_{:} WHERE date_time LIKE '{:}%';".format(city, string)
     print(sql)
     connector = sqlite3.connect(name_db)
     s = connector.execute(sql).fetchall()
     return s
-
 
 # data1 = Data("datas/lviv/2012-01.xlsx", "db.sqlite3")
 # print(data1.lala("lviv"))
@@ -105,4 +107,3 @@ def search(name_db, string, city):
 # delete_table("db.sqlite3")
 # edit("polynomial")
 # search("db.sqlite3", "2012-02")
-
