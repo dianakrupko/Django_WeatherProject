@@ -25,7 +25,7 @@ class Data:
         self.table['FF'] = self.table['FF'].interpolate(method=name_method, order=1)
         self.table['T'] = self.table['T'].interpolate(method=name_method, order=1)
         for i in range(self.table_rows):
-            if not isnull(self.table['dd'][i]) and len(self.table['dd'][i]) > 3:
+            if not isnull(self.table['dd'][i]):
                 self.table['dd'][i] = my_dict[self.table['dd'][i]]
             if isnull(self.table['dd'][i]) and self.table['FF'][i] == 0:
                 self.table['dd'][i] = "Штиль"
