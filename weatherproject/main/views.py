@@ -3,11 +3,11 @@ from django.shortcuts import render, redirect
 
 from .forms import GraphicForm
 from .formsWheatherCity import CityForm
+from .graphics import *
 from .models import City
 
 
 # from ..data.views import cities
-from ..graphics import graphics_4
 
 
 def index(request):
@@ -55,7 +55,9 @@ def graphics(request):
     context = {'form': form, 'city': city,
                'date1': date1, 'submitbutton': submitbutton,
                'date2': date2}
-    graphics_4(city, "2012-01-01 00:00", "2012-01-01 23:59")
+    # print(city)
+    # print(date1.strftime("%Y-%m-%d %H:%M"))
+    graphics_4(city, date1.strftime("%Y-%m-%d %H:%M"), date1.strftime("%Y-%m-%d %H:%M"))
     return render(request, 'main/formGraphics.html', context)
 
 

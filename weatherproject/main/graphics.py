@@ -34,7 +34,7 @@ def graphics_2(city, date_1, date_2):
     # забрати вісь ігрик, і якщо вісь забереться то трошки змінити назву
     date_1, date_2 = format_data(date_1, date_2)
     sql = "SELECT T, count(*) FROM data_{:} WHERE date_time>={:} and date_time<={:} GROUP BY T ORDER BY T ;".format(city, date_1, date_2)
-    connector = sqlite3.connect("db.sqlite3")
+    connector = sqlite3.connect("../db.sqlite3")
     s = connector.execute(sql).fetchall()
     s = np.array(s)
     plt.title('Тривалість температурних режимів')
@@ -78,7 +78,7 @@ def graphics_1(city, date_1, date_2):
     date_1, date_2 = format_data(date_1, date_2)
     sql = "SELECT T, date_time FROM data_{:} WHERE date_time>={:} and date_time<={:} ORDER BY date_time;".format(
         city, date_1, date_2)
-    connector = sqlite3.connect("db.sqlite3")
+    connector = sqlite3.connect("../db.sqlite3")
     s = connector.execute(sql).fetchall()
     data = np.array(s)
     plt.title('Температурні умови регіону')
@@ -105,7 +105,7 @@ def graphics_3(city, date_1, date_2):
     date_1, date_2 = format_data(date_1, date_2)
     sql = "SELECT FF, dd FROM data_{:} WHERE date_time>={:} and date_time<={:};".format(
         city, date_1, date_2)
-    connector = sqlite3.connect("db.sqlite3")
+    connector = sqlite3.connect("../db.sqlite3")
     s = connector.execute(sql).fetchall()
 
     ax = WindroseAxes.from_ax()
@@ -122,15 +122,15 @@ def graphics_3(city, date_1, date_2):
     ax.remove()
     return s
 
-graphics_1("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
-graphics_3("kyiv", "2012-01-01 00:00", "2012-01-04 23:59")
-graphics_4("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
-graphics_2("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
+# graphics_1("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
+# graphics_3("kyiv", "2012-01-01 00:00", "2012-01-04 23:59")
+# graphics_4("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
+# graphics_2("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
 
 
-def func():
-    if(graphics_2("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")):
-        return 0
+# def func():
+#     if(graphics_2("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")):
+#         return 0
 
 
 
