@@ -10,7 +10,7 @@ class City(models.Model):
 
 class Graphic(models.Model):
     name = models.CharField(max_length=30),
-    text=models.TextField(max_length=250)
+    date1=models.DateField()
 
     def __str__(self):
         return self.name

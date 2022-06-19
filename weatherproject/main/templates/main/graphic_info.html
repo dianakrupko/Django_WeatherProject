@@ -1,8 +1,15 @@
+<style>
+    .ggg{
+    color: red;
+  }
+</style>
 {% extends 'main/layout.html' %}
 {% load static %}
 
 {% block title %}info{% endblock %}
 
 {% block content %}
-{{ text }}
+{{ city }}
+{{ date1 }}
+<div class="ggg">{{ date2 }}</div>
 {% endblock %}

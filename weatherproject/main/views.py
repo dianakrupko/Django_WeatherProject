@@ -31,18 +31,41 @@ def contacts(request):
 
 
 def graphics(request):
-    if request.method=='POST':
-        form=GraphicForm(request.POST)
+
+    # if request.method=='POST':
+    #     form=GraphicForm(request.POST)
+    #     if form.is_valid():
+    #         print(form.cleaned_data)
+    # else:
+    #     form = GraphicForm()
+    submitbutton = request.POST.get("submit")
+
+    city = ''
+    date1 = ''
+    date2 = ''
+
+    form = GraphicForm(request.POST or None)
+    if form.is_valid():
+        city = form.cleaned_data.get("city")
+        date1 = form.cleaned_data.get("date1")
+        date2 = form.cleaned_data.get("date2")
+
+    context = {'form': form, 'city': city,
+               'date1': date1, 'submitbutton': submitbutton,
+               'date2': date2}
+    return render(request, 'main/formGraphics.html', context)
+
+
+def graphic_info(request, date2):
+    # form=GraphicForm()
+    if request.method == 'POST':
+        form = GraphicForm(request.POST)
         if form.is_valid():
             print(form.cleaned_data)
     else:
         form = GraphicForm()
-    return render(request, 'main/formGraphics.html', {'form': form})
 
-
-def graphic_info(request):
-    # form=GraphicForm()
-    return render(request, 'main/graphic_info.html')
+    return render(request, 'main/graphic_info.html', {'date2':date2})
 
 
 def weatherCity(request):

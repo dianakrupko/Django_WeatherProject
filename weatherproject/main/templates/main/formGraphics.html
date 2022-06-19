@@ -5,38 +5,23 @@
 
 {% block content %}
 <main class="container">
-    <form method="post" action="{% url 'graphic_info' %}">
-                {% csrf_token %}
-        <p>Регіон:
-            <select name="city" required="required">
-                <option value="">Виберіть регіон</option>
-                <option value="kharkiv">Харків</option>
-                <option value="2">Зеленый</option>
-                <option value="3">Желтый</option>
-                <option value="4">Красный</option>
-                <option value="5">Оранжевый</option>
-                <option value="6">Черный</option>
-            </select>
-            <!--            href="{% url 'city_index' 'kharkiv' %}"-->
-        </p>
-        <p>Виберіть проміжок:
-            <input type="date" name="calendar" value="2012-01-01"
-                   max="2012-12-31" min="2012-01-01">
+    <form method="POST" action="">{% csrf_token %}
+<!--        {{ form.as_p }}-->
+{{ form.non_field_errors }}
+{% for f in form %}
+{{f.label}}: {{ f }}
 
-            <input type="date" name="calendar" value="2012-01-01"
-                   max="2012-12-31" min="2012-01-01">
-            <input type="submit" value="Відправити"></p>
+{{ f.errors }}
+{% endfor %}
+        <input type="Submit" name="submit" value="Submit"/>
     </form>
-<!--    <a href="{% url 'graphic_info' %}">ggggggg</a>-->
-    <form method="POST" action="{% url 'graphic_info' %}">{% csrf_token %}
-        {{ form.as_p }}
-<!--{{ form.non_field_errors }}-->
-<!--{% for f in form %}-->
-<!--{{f.label}}: {{ f }}-->
 
-<!--{{ f.errors }}-->
-<!--{% endfor %}-->
-        <button type="submit" class="">Save</button>
-    </form>
+{% if submitbutton == "Submit" %}
+    <h2>{{ city }}</h2>
+<p>З {{ date1 }}</p>
+<p>До {{ date2 }}</p>
+{% endif %}
 </main>
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'p3plcpnl0769'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script></html>
+
 {% endblock %}
