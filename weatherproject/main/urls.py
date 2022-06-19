@@ -9,6 +9,6 @@ urlpatterns = [
     path('contacts', views.contacts, name="contacts"),
     path('weatherCity', views.weatherCity, name="weatherCity"),
     path('graphics', views.graphics, name="graphics"),
-    path('<str:date2>', views.graphic_info, name="graphic_info")
-    # path('graphic_info', views.graphic_info, name="graphic_info")
+    # path('<str:date2>', views.graphic_info, name="graphic_info")
+    path('graphic_info', views.graphic_info, name="graphic_info")
 ]

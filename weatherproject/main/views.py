@@ -1,15 +1,13 @@
-import datetime
-
 import requests
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 
 from .forms import GraphicForm
-from .models import City
 from .formsWheatherCity import CityForm
+from .models import City
 
 
 # from ..data.views import cities
+from ..graphics import graphics_4
 
 
 def index(request):
@@ -57,19 +55,36 @@ def graphics(request):
     context = {'form': form, 'city': city,
                'date1': date1, 'submitbutton': submitbutton,
                'date2': date2}
+    graphics_4(city, "2012-01-01 00:00", "2012-01-01 23:59")
     return render(request, 'main/formGraphics.html', context)
 
 
 def graphic_info(request):
     # form=GraphicForm()
-    if request.method == 'POST':
-        form = GraphicForm(request.POST)
-        if form.is_valid():
-            print(form.cleaned_data)
-    else:
-        form = GraphicForm()
+    # if request.method == 'POST':
+    #     form = GraphicForm(request.POST)
+    #     if form.is_valid():
+    #         print(form.cleaned_data)
+    # else:
+    #     form = GraphicForm()
 
-    return render(request, 'main/graphic_info.html')
+    city = ''
+    date1 = ''
+    date2 = ''
+    print(date2)
+    form = GraphicForm(request.POST or None)
+    if form.is_valid():
+        city = form.cleaned_data.get("city")
+        date1 = form.cleaned_data.get("date1")
+        date2 = form.cleaned_data.get("date2")
+        # print(form.cleaned_data)
+    # formatDate1 = date1.strftime("%Y-%m-%d %H:%M:%S")
+    # formatDate2 = date2.strftime("%Y-%m-%d %H:%M:%S")
+
+    context = {'form': form, 'city': city,
+               'date1': date1,
+               'date2': date2}
+    return render(request, 'main/graphic_info.html', context)
 
 
 def weatherCity(request):
