@@ -31,7 +31,6 @@ def autolabel(rects, labels=None,  height_factor=1.01):
 
 
 def graphics_2(city, date_1, date_2):
-    # забрати вісь ігрик, і якщо вісь забереться то трошки змінити назву
     date_1, date_2 = format_data(date_1, date_2)
     sql = "SELECT T, count(*) FROM data_{:} WHERE date_time>={:} and date_time<={:} GROUP BY T ORDER BY T ;".format(city, date_1, date_2)
     connector = sqlite3.connect("../db.sqlite3")
@@ -40,26 +39,26 @@ def graphics_2(city, date_1, date_2):
     plt.title('Тривалість температурних режимів')
     plt.xlabel('Температура, С')
     plt.ylabel('Час, год')
-    object = plt.bar(s[:, 0], s[:, 1]/4, color='green')
+    plt.bar(s[:, 0], s[:, 1]/4, color='green')
     plt.xticks(np.arange(min(s[:, 0]), max(s[:,0])+1, step=1))
 
     ax = plt.gca()
     autolabel(ax.patches, s[:,1] / 4, height_factor=1.01)
     # plt.show()
     plt.savefig("demo_2.png")
-    object.remove()
+
+    plt.gcf().clear()
     return s
 
 
 def graphics_4(city, date_1, date_2):
-    # додати сетку в один бік(не обовязково)
     date_1, date_2 = format_data(date_1, date_2)
     sql = "SELECT FF, count(*) FROM data_{:} WHERE date_time>={:} and date_time<={:} GROUP BY FF ORDER BY FF;".format(
         city, date_1, date_2)
-    connector = sqlite3.connect("db.sqlite3")
+    connector = sqlite3.connect("../db.sqlite3")
     s = connector.execute(sql).fetchall()
     s = np.array(s)
-    print(s)
+
     plt.title('Тривалість режимів вітрової активності')
     plt.xlabel('Швидкість, м/с')
     plt.ylabel('Час, год')
@@ -68,24 +67,23 @@ def graphics_4(city, date_1, date_2):
     ax.grid(axis='y')
     ax.bar(s[:, 0], s[:, 1]/4)
     plt.savefig("demo_4.png")
-    ax.remove()
+    plt.gcf().clear()
     return s
 
 
 def graphics_1(city, date_1, date_2):
-
-    # розвернути підписи, і придумати щось з кроком в осі ікс(якщо багато значень, то нічого видно не буде, можна зробити крок, або діставати з бд по днях)
     date_1, date_2 = format_data(date_1, date_2)
     sql = "SELECT T, date_time FROM data_{:} WHERE date_time>={:} and date_time<={:} ORDER BY date_time;".format(
         city, date_1, date_2)
     connector = sqlite3.connect("../db.sqlite3")
     s = connector.execute(sql).fetchall()
     data = np.array(s)
+    fig = plt.figure(figsize=(7.5, 10.5))
     plt.title('Температурні умови регіону')
     plt.xlabel('Дата і час')
     plt.ylabel('Температура, С')
     plt.grid(True)
-    object,=plt.plot(data[:, 1], data[:,0])
+    plt.plot(data[:, 1], data[:,0].astype(int))
     step = 1
     if len(data[:,1])>240:
         step = 48
@@ -94,10 +92,10 @@ def graphics_1(city, date_1, date_2):
     elif len(data[:,1])>40:
         step = 12
 
-    plt.xticks(np.arange(0, len(data[:,1])/2+step, step=step))
+    plt.xticks(np.arange(0, len(data[:,1])/2+step, step=step), rotation=45)
     plt.width=len(data[:,1])
     plt.savefig("demo_1.png")
-    object.remove()
+    plt.gcf().clear()
     return s
 
 
@@ -107,7 +105,6 @@ def graphics_3(city, date_1, date_2):
         city, date_1, date_2)
     connector = sqlite3.connect("../db.sqlite3")
     s = connector.execute(sql).fetchall()
-
     ax = WindroseAxes.from_ax()
     data_t = []
     data_c=[]
@@ -119,18 +116,15 @@ def graphics_3(city, date_1, date_2):
     ax.bar(data_c, data_t, normed=True, opening=0.8, edgecolor='white')
     ax.set_legend()
     plt.savefig("demo_3.png")
-    ax.remove()
+    plt.gcf().clear()
     return s
 
-# graphics_1("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
-# graphics_3("kyiv", "2012-01-01 00:00", "2012-01-04 23:59")
-# graphics_4("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
-# graphics_2("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
 
+graphics_2("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
+graphics_1("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
+graphics_3("kyiv", "2012-01-01 00:00", "2012-01-04 23:59")
+graphics_4("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
 
-# def func():
-#     if(graphics_2("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")):
-#         return 0
 
 
 
