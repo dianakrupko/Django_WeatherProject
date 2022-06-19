@@ -1,3 +1,5 @@
+import datetime
+
 import requests
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -31,7 +33,6 @@ def contacts(request):
 
 
 def graphics(request):
-
     # if request.method=='POST':
     #     form=GraphicForm(request.POST)
     #     if form.is_valid():
@@ -43,12 +44,15 @@ def graphics(request):
     city = ''
     date1 = ''
     date2 = ''
-
+    print(date2)
     form = GraphicForm(request.POST or None)
     if form.is_valid():
         city = form.cleaned_data.get("city")
         date1 = form.cleaned_data.get("date1")
         date2 = form.cleaned_data.get("date2")
+        # print(form.cleaned_data)
+    # formatDate1 = date1.strftime("%Y-%m-%d %H:%M:%S")
+    # formatDate2 = date2.strftime("%Y-%m-%d %H:%M:%S")
 
     context = {'form': form, 'city': city,
                'date1': date1, 'submitbutton': submitbutton,
@@ -56,7 +60,7 @@ def graphics(request):
     return render(request, 'main/formGraphics.html', context)
 
 
-def graphic_info(request, date2):
+def graphic_info(request):
     # form=GraphicForm()
     if request.method == 'POST':
         form = GraphicForm(request.POST)
@@ -65,7 +69,7 @@ def graphic_info(request, date2):
     else:
         form = GraphicForm()
 
-    return render(request, 'main/graphic_info.html', {'date2':date2})
+    return render(request, 'main/graphic_info.html')
 
 
 def weatherCity(request):

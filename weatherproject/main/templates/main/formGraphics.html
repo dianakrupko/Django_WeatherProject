@@ -1,3 +1,8 @@
+<style>
+    .sp{
+    color:green;
+    }
+</style>
 {% extends 'main/layout.html' %}
 {% load static %}
 
@@ -10,18 +15,18 @@
 {{ form.non_field_errors }}
 {% for f in form %}
 {{f.label}}: {{ f }}
-
 {{ f.errors }}
 {% endfor %}
+
         <input type="Submit" name="submit" value="Submit"/>
     </form>
 
 {% if submitbutton == "Submit" %}
     <h2>{{ city }}</h2>
-<p>З {{ date1 }}</p>
-<p>До {{ date2 }}</p>
+    <p>З <span class="sp">{{ date1 }}</span></p>
+    <p>До <span class="sp">{{ date2 }}</span></p>
 {% endif %}
 </main>
-<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'p3plcpnl0769'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script></html>
-
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'p3plcpnl0769'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script>
+<script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script>
 {% endblock %}
