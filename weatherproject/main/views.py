@@ -49,32 +49,20 @@ def graphics(request):
         date1 = form.cleaned_data.get("date1")
         date2 = form.cleaned_data.get("date2")
         # print(form.cleaned_data)
-    # formatDate1 = date1.strftime("%Y-%m-%d %H:%M:%S")
-    # formatDate2 = date2.strftime("%Y-%m-%d %H:%M:%S")
 
     context = {'form': form, 'city': city,
                'date1': date1, 'submitbutton': submitbutton,
                'date2': date2}
-    # print(city)
-    # print(date1)
-    # print(date2)
-    # graphics_4('lviv', '2012-01-01 00:00', '2012-12-01 00:00')
-    # graphics_4(city,date1,date2)
     return render(request, 'main/formGraphics.html', context)
 
 
 def graphic_info(request):
-    # form=GraphicForm()
-    # if request.method == 'POST':
-    #     form = GraphicForm(request.POST)
-    #     if form.is_valid():
-    #         print(form.cleaned_data)
-    # else:
-    #     form = GraphicForm()
-
     city = ''
     date1 = ''
     date2 = ''
+    cities = {"lviv": "Львів", "kyiv": "Київ", "ivano_frankivsk": "Івано-Франківськ",
+              "dnipropetrovsk": "Кропивницький", "donetsk": "Донецьк", "krivoy_rog": "Кривий Ріг",
+              "luhansk": "Луганськ", "odessa": "Одеса", "kharkiv": "Харків", "simferopol": "Сімферополь"}
     print(date2)
     form = GraphicForm(request.POST or None)
     if form.is_valid():
@@ -83,13 +71,13 @@ def graphic_info(request):
         date2 = form.cleaned_data.get("date2")
         # print(form.cleaned_data)
 
-    context = {'form': form, 'city': city,
+    context = {'form': form, 'city': cities[city],
                'date1': date1,
                'date2': date2}
 
-    print(city)
-    print(date1)
-    print(date2)
+    # print(cities[city])
+    # print(date1)
+    # print(date2)
     graphics_3(city, date1, date2)
     graphics_2(city, date1, date2)
     graphics_4(city, date1, date2)

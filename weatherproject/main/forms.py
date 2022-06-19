@@ -17,6 +17,11 @@ class GraphicForm(forms.Form):
         ("donetsk", "Донецьк"),
         ("krivoy_rog", "Кривий Ріг"),
         ("odessa", "Одеса"),
+        ("ivano_frankivsk", "Івано-Франківськ"),
+        ("dnipropetrovsk", "Кропивницький"),
+        ("luhansk", "Луганськ"),
+        ("kharkiv", "Харків"),
+        ("simferopol", "Сімферополь"),
     )
     city = forms.ChoiceField(choices=CITY_CHOICES, label="Регіон")
     date1 = forms.DateTimeField(label='З', input_formats=['%d/%m/%Y %H:%M'], widget=forms.DateTimeInput(attrs={
