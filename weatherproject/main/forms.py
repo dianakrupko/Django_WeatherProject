@@ -31,9 +31,13 @@ class GraphicForm(forms.Form):
         'max': '2012-12-12 23:59'
     }))
 
+    def clean_date1(self):
+        date1 = self.cleaned_data['date1']
+        return date1.strftime("%Y-%m-%d %H:%M")
+
     def clean_date2(self):
         date2 = self.cleaned_data['date2']
         date1 = self.cleaned_data['date1']
-        if (date2<date1):
+        if (date2.strftime("%Y-%m-%d %H:%M") < date1):
             raise ValidationError('Друга дата має бути пізніше першої')
-        return date2
+        return date2.strftime("%Y-%m-%d %H:%M")

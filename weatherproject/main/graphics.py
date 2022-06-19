@@ -33,7 +33,7 @@ def autolabel(rects, labels=None,  height_factor=1.01):
 def graphics_2(city, date_1, date_2):
     date_1, date_2 = format_data(date_1, date_2)
     sql = "SELECT T, count(*) FROM data_{:} WHERE date_time>={:} and date_time<={:} GROUP BY T ORDER BY T ;".format(city, date_1, date_2)
-    connector = sqlite3.connect("../db.sqlite3")
+    connector = sqlite3.connect("db.sqlite3")
     s = connector.execute(sql).fetchall()
     s = np.array(s)
     plt.title('Тривалість температурних режимів')
@@ -45,7 +45,7 @@ def graphics_2(city, date_1, date_2):
     ax = plt.gca()
     autolabel(ax.patches, s[:,1] / 4, height_factor=1.01)
     # plt.show()
-    plt.savefig("demo_2.png")
+    plt.savefig("static/wea/img/demo_2.png")
 
     plt.gcf().clear()
     return s
@@ -55,7 +55,7 @@ def graphics_4(city, date_1, date_2):
     date_1, date_2 = format_data(date_1, date_2)
     sql = "SELECT FF, count(*) FROM data_{:} WHERE date_time>={:} and date_time<={:} GROUP BY FF ORDER BY FF;".format(
         city, date_1, date_2)
-    connector = sqlite3.connect("../db.sqlite3")
+    connector = sqlite3.connect("db.sqlite3")
     s = connector.execute(sql).fetchall()
     s = np.array(s)
 
@@ -66,7 +66,7 @@ def graphics_4(city, date_1, date_2):
     ax=plt.gca()
     ax.grid(axis='y')
     ax.bar(s[:, 0], s[:, 1]/4)
-    plt.savefig("demo_4.png")
+    plt.savefig('static/wea/img/demo_4.png')
     plt.gcf().clear()
     return s
 
@@ -75,7 +75,7 @@ def graphics_1(city, date_1, date_2):
     date_1, date_2 = format_data(date_1, date_2)
     sql = "SELECT T, date_time FROM data_{:} WHERE date_time>={:} and date_time<={:} ORDER BY date_time;".format(
         city, date_1, date_2)
-    connector = sqlite3.connect("../db.sqlite3")
+    connector = sqlite3.connect("db.sqlite3")
     s = connector.execute(sql).fetchall()
     data = np.array(s)
     fig = plt.figure(figsize=(7.5, 10.5))
@@ -94,7 +94,7 @@ def graphics_1(city, date_1, date_2):
 
     plt.xticks(np.arange(0, len(data[:,1])/2+step, step=step), rotation=45)
     plt.width=len(data[:,1])
-    plt.savefig("demo_1.png")
+    plt.savefig("static/wea/img/demo_1.png")
     plt.gcf().clear()
     return s
 
@@ -103,7 +103,7 @@ def graphics_3(city, date_1, date_2):
     date_1, date_2 = format_data(date_1, date_2)
     sql = "SELECT FF, dd FROM data_{:} WHERE date_time>={:} and date_time<={:};".format(
         city, date_1, date_2)
-    connector = sqlite3.connect("../db.sqlite3")
+    connector = sqlite3.connect("db.sqlite3")
     s = connector.execute(sql).fetchall()
     ax = WindroseAxes.from_ax()
     data_t = []
@@ -115,15 +115,15 @@ def graphics_3(city, date_1, date_2):
 
     ax.bar(data_c, data_t, normed=True, opening=0.8, edgecolor='white')
     ax.set_legend()
-    plt.savefig("demo_3.png")
+    plt.savefig("static/wea/img/demo_3.png")
     plt.gcf().clear()
     return s
 
-
-graphics_2("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
-graphics_1("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
-graphics_3("kyiv", "2012-01-01 00:00", "2012-01-04 23:59")
-graphics_4("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
+#
+# graphics_2("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
+# graphics_1("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
+# graphics_3("kyiv", "2012-01-01 00:00", "2012-01-04 23:59")
+# graphics_4("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
 
 
 

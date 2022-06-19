@@ -56,8 +56,10 @@ def graphics(request):
                'date1': date1, 'submitbutton': submitbutton,
                'date2': date2}
     # print(city)
-    # print(date1.strftime("%Y-%m-%d %H:%M"))
-    graphics_4(city, date1.strftime("%Y-%m-%d %H:%M"), date1.strftime("%Y-%m-%d %H:%M"))
+    # print(date1)
+    # print(date2)
+    # graphics_4('lviv', '2012-01-01 00:00', '2012-12-01 00:00')
+    # graphics_4(city,date1,date2)
     return render(request, 'main/formGraphics.html', context)
 
 
@@ -80,12 +82,18 @@ def graphic_info(request):
         date1 = form.cleaned_data.get("date1")
         date2 = form.cleaned_data.get("date2")
         # print(form.cleaned_data)
-    # formatDate1 = date1.strftime("%Y-%m-%d %H:%M:%S")
-    # formatDate2 = date2.strftime("%Y-%m-%d %H:%M:%S")
 
     context = {'form': form, 'city': city,
                'date1': date1,
                'date2': date2}
+
+    print(city)
+    print(date1)
+    print(date2)
+    graphics_3(city, date1, date2)
+    graphics_2(city, date1, date2)
+    graphics_4(city, date1, date2)
+    graphics_1(city, date1, date2)
     return render(request, 'main/graphic_info.html', context)
 
 
