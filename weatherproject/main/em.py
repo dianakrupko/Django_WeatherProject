@@ -1,48 +1,46 @@
 import smtplib
-from password import password
+import os
 from email.mime.multipart import MIMEMultipart
-from bs4 import BeautifulSoup as bs
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+from platform import python_version
 
-# ваши учетные данные
-email = "didididididi.kk@gmail.com"
-password = password
-# электронная почта отправителя
-FROM = "didididididi.kk@gmail.com"
-# адрес электронной почты получателя
-TO = "dnkrupkoo@gmail.com"
-# тема письма (тема)
-subject = "Report"
+server = 'smtp.ukr.net'
+user = 'dianakru@ukr.net'
+password = 'k3KQVjTaaKtbEUaR'
 
-# инициализируем сообщение, которое хотим отправить
-msg = MIMEMultipart("alternative")
-# установить адрес электронной почты отправителя
-msg["From"] = FROM
-# установить адрес электронной почты получателя
-msg["To"] = TO
-# задаем тему
-msg["Subject"] = subject
+recipients = ['dnkrupkoo@gmail.com', 'didididididi.kk@gmail.com']
+sender = 'dianakru@ukr.net'
+subject = 'Звіт'
+# text = 'Текст  sdf sdf sdf sdaf <b>sdaf sdf</b> fg hsdgh <h1>f sd</h1> dfhjhgs sd gsdfg sdf'
+# html = '<html><head></head><body><p>' + text + '</p></body></html>'
 
-# установить тело письма как HTML
-html = """
-This email is sent using <b>Python</b>!
-"""
-# делаем текстовую версию HTML
-text = bs(html, "html.parser").text
+filepath = "../zvit.pdf"
+basename = os.path.basename(filepath)
+filesize = os.path.getsize(filepath)
 
+msg = MIMEMultipart('alternative')
+msg['Subject'] = subject
+msg['From'] = 'Diana Krupko <' + sender + '>'
+msg['To'] = ', '.join(recipients)
+msg['Reply-To'] = sender
+msg['Return-Path'] = sender
+msg['X-Mailer'] = 'Python/' + (python_version())
 
-# print(msg.as_string())
-def send_mail(email, password, FROM, TO, msg):
-    # инициализировать SMTP-сервер
-    server = smtplib.SMTP("smtp.gmail.com", 587)
-    # подключиться к SMTP-серверу в режиме TLS (безопасный) и отправить EHLO
-    server.starttls()
-    # войти в учетную запись, используя учетные данные
-    server.login(email, password)
-    # отправить электронное письмо
-    server.sendmail(FROM, TO, msg.as_string())
-    # завершить сеанс SMTP
-    server.quit()
+# part_text = MIMEText(text, 'plain')
+# part_html = MIMEText(html, 'html')
+part_file = MIMEBase('application', 'octet-stream; name="{}"'.format(basename))
+part_file.set_payload(open(filepath, "rb").read())
+part_file.add_header('Content-Description', basename)
+part_file.add_header('Content-Disposition', 'attachment; filename="{}"; size={}'.format(basename, filesize))
+encoders.encode_base64(part_file)
 
+# msg.attach(part_text)
+# msg.attach(part_html)
+msg.attach(part_file)
 
-# отправить почту
-send_mail(email, password, FROM, TO, msg)
+mail = smtplib.SMTP_SSL(server)
+mail.login(user, password)
+mail.sendmail(sender, recipients, msg.as_string())
+mail.quit()

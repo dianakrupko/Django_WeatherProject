@@ -8,14 +8,6 @@ from .models import City
 
 import pdfkit
 
-import smtplib
-from email import encoders
-from password import password
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from email.mime.base import MIMEBase
-from bs4 import BeautifulSoup as bs
-
 # import aspose.words as aw
 #
 # doc = aw.Document("Input.html")
@@ -139,4 +131,5 @@ def report(request):
     # path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
     # config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
     # pdfkit.from_url("http://127.0.0.1:8000/info", "zvit.pdf", configuration=config)
+    # mail.sendmail(sender, recipients, msg.as_string())
     return render(request, 'main/report_done.html')
