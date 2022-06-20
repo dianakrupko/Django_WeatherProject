@@ -10,6 +10,7 @@ import pdfkit
 
 import smtplib
 from email import encoders
+from password import password
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
@@ -134,7 +135,7 @@ def weatherCity(request):
 
 
 def report(request):
-    
+
     # path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
     # config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
     # pdfkit.from_url("http://127.0.0.1:8000/info", "zvit.pdf", configuration=config)
