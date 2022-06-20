@@ -34,11 +34,14 @@
     <p><span class="sp">{{ date1 }}</span> - <span class="sp">{{ date2 }}</span></p>
     </div>
 <div class="graph-photo">
-    <img src="{% static 'wea/img/demo_3.png' %}" alt="3">
-    <img src="{% static 'wea/img/demo_4.png' %}" alt="4">
     <img src="{% static 'wea/img/demo_1.png' %}" alt="1">
+    <p>Таблиця:</p>
     <img src="{% static 'wea/img/demo_2.png' %}" alt="2">
+    <img src="{% static 'wea/img/demo_3.png' %}" alt="3">
+    <p>Таблиця:</p>
+    <img src="{% static 'wea/img/demo_4.png' %}" alt="4">
 
 
 </div>
+<a href="{% url 'report' %}">Згенерувати звіт</a>
 {% endblock %}

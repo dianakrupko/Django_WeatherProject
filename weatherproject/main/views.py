@@ -6,7 +6,10 @@ from .formsWheatherCity import CityForm
 from .graphics import *
 from .models import City
 
-
+# import aspose.words as aw
+#
+# doc = aw.Document("Input.html")
+# doc.save("Output.pdf")
 # from ..data.views import cities
 
 
@@ -117,3 +120,7 @@ def weatherCity(request):
     }
 
     return render(request, 'main/weatherCity.html', contex)
+
+
+def report(request):
+    return render(request, "main/general.html")
