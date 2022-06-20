@@ -6,6 +6,9 @@ from .formsWheatherCity import CityForm
 from .graphics import *
 from .models import City
 
+import pdfkit
+
+
 # import aspose.words as aw
 #
 # doc = aw.Document("Input.html")
@@ -66,7 +69,6 @@ def graphic_info(request):
     cities = {"lviv": "Львів", "kyiv": "Київ", "ivano_frankivsk": "Івано-Франківськ",
               "dnipropetrovsk": "Кропивницький", "donetsk": "Донецьк", "krivoy_rog": "Кривий Ріг",
               "luhansk": "Луганськ", "odessa": "Одеса", "kharkiv": "Харків", "simferopol": "Сімферополь"}
-    print(date2)
     form = GraphicForm(request.POST or None)
     if form.is_valid():
         city = form.cleaned_data.get("city")
@@ -77,15 +79,15 @@ def graphic_info(request):
     context = {'form': form, 'city': cities[city],
                'date1': date1,
                'date2': date2}
-
-    # print(cities[city])
-    # print(date1)
-    # print(date2)
     graphics_3(city, date1, date2)
     graphics_2(city, date1, date2)
     graphics_4(city, date1, date2)
     graphics_1(city, date1, date2)
     return render(request, 'main/graphic_info.html', context)
+
+
+def info(request):
+    return render(request, 'main/info.html')
 
 
 def weatherCity(request):
@@ -123,4 +125,7 @@ def weatherCity(request):
 
 
 def report(request):
-    return render(request, "main/general.html")
+    path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
+    config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
+    pdfkit.from_url("http://127.0.0.1:8000/", "zvit.pdf", configuration=config)
+    return render(request, 'main/general.html')

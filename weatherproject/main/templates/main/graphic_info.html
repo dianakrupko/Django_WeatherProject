@@ -22,6 +22,7 @@
     margin:20px 0
     }
 
+
 </style>
 {% extends 'main/layout.html' %}
 {% load static %}
@@ -30,9 +31,9 @@
 
 {% block content %}
 <div class="info-form">
-<h1>{{ city }}</h1>
+    <h1>{{ city }}</h1>
     <p><span class="sp">{{ date1 }}</span> - <span class="sp">{{ date2 }}</span></p>
-    </div>
+</div>
 <div class="graph-photo">
     <img src="{% static 'wea/img/demo_1.png' %}" alt="1">
     <p>Таблиця:</p>
@@ -40,8 +41,8 @@
     <img src="{% static 'wea/img/demo_3.png' %}" alt="3">
     <p>Таблиця:</p>
     <img src="{% static 'wea/img/demo_4.png' %}" alt="4">
-
-
 </div>
+
 <a href="{% url 'report' %}">Згенерувати звіт</a>
+<!--<a>{{ request.path }}</a>-->
 {% endblock %}

@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from windrose import WindroseAxes
 
-
 my_dict = {"Західний":180, "Південний": 270, "Змінний":0, "Північний":90,
            "Східний":0, "Пд-Зх":225, "Пд-Сх":315, "Пн-Зх":135,"Пн-Сх":45, "Штиль":0}
 
@@ -124,7 +123,6 @@ def graphics_3(city, date_1, date_2):
 # graphics_1("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
 # graphics_3("kyiv", "2012-01-01 00:00", "2012-01-04 23:59")
 # graphics_4("kyiv", "2012-01-01 00:00", "2012-01-01 23:59")
-
 
 
 

@@ -11,5 +11,7 @@ urlpatterns = [
     path('graphics', views.graphics, name="graphics"),
     # path('<str:date2>', views.graphic_info, name="graphic_info")
     path('graphic_info', views.graphic_info, name="graphic_info"),
+    path('info', views.info, name="info"),
     path('report', views.report, name="report")
+
 ]
