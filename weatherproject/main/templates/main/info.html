@@ -1,11 +1,48 @@
-{% extends 'main/layout.html' %}
+<style>
+    .ggg{
+    color: red;
+  }
+  .info-form{
+    text-align:center;
+    }
+    .info-form p{
+        color: grey;
+        font-size:20px;
+        font-weight:400;
+    }
+  .graph-photo{
+    display:flex;
+    flex-direction:column;
+    text-align:center;
+    justify-content: center;
+    align-items:center;
+    }
+.graph-photo img{
+    width:52%;
+    margin:20px 0
+    }
+</style>
 {% load static %}
 
-{% block title %}Контакти{% endblock %}
-
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Звіт</title>
+</head>
+<body>
+<div class="info-form">
+    <h2>Аналіз метеорологічних даних регіону</h2>
+<!--    <h1>{{ city }}</h1>-->
+<!--    <p><span class="sp">{{ date1 }}</span> - <span class="sp">{{ date2 }}</span></p>-->
+</div>
+<div class="graph-photo">
     <img src="{% static 'wea/img/demo_1.png' %}" alt="1">
+<!--    <p>Таблиця:</p>-->
     <img src="{% static 'wea/img/demo_2.png' %}" alt="2">
     <img src="{% static 'wea/img/demo_3.png' %}" alt="3">
+<!--    <p>Таблиця:</p>-->
     <img src="{% static 'wea/img/demo_4.png' %}" alt="4">
-{% endblock %}
+</div>
+</body>
+</html>

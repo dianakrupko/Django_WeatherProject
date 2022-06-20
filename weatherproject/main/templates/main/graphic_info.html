@@ -27,7 +27,7 @@
 {% extends 'main/layout.html' %}
 {% load static %}
 
-{% block title %}info{% endblock %}
+{% block title %}Звіт{% endblock %}
 
 {% block content %}
 <div class="info-form">
@@ -43,6 +43,6 @@
     <img src="{% static 'wea/img/demo_4.png' %}" alt="4">
 </div>
 
-<a href="{% url 'report' %}">Згенерувати звіт</a>
+<a href="{% url 'report' %}">Відправити звіт</a>
 <!--<a>{{ request.path }}</a>-->
 {% endblock %}

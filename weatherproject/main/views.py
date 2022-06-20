@@ -8,6 +8,12 @@ from .models import City
 
 import pdfkit
 
+import smtplib
+from email import encoders
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from bs4 import BeautifulSoup as bs
 
 # import aspose.words as aw
 #
@@ -83,6 +89,9 @@ def graphic_info(request):
     graphics_2(city, date1, date2)
     graphics_4(city, date1, date2)
     graphics_1(city, date1, date2)
+    path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
+    config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
+    pdfkit.from_url("http://127.0.0.1:8000/info", "zvit.pdf", configuration=config)
     return render(request, 'main/graphic_info.html', context)
 
 
@@ -125,7 +134,8 @@ def weatherCity(request):
 
 
 def report(request):
-    path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
-    config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
-    pdfkit.from_url("http://127.0.0.1:8000/", "zvit.pdf", configuration=config)
-    return render(request, 'main/general.html')
+    
+    # path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
+    # config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
+    # pdfkit.from_url("http://127.0.0.1:8000/info", "zvit.pdf", configuration=config)
+    return render(request, 'main/report_done.html')
