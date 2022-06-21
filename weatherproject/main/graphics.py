@@ -46,7 +46,7 @@ def graphics_2(city, date_1, date_2):
     # plt.show()
     plt.savefig("static/wea/img/demo_2.png")
     plt.gcf().clear()
-    print(s)
+    # print(s)
     return s
 
 

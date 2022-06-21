@@ -17,10 +17,25 @@
     justify-content: center;
     align-items:center;
     }
+    .comp{
+        margin-top:70px;
+        }
 .graph-photo img{
-    width:50%;
+    width:100%;
     margin:20px 0
     }
+.butt{
+    text-align:right;
+    padding:70px 50px
+    }
+    .butt a{
+    font-size:30px;
+    }
+    .butt button{
+        border:3px solid #e0ebeb;
+        margin-right:100px;
+    }
+
 
 
 
@@ -38,54 +53,51 @@
     <p><span class="sp">{{ date1 }}</span> - <span class="sp">{{ date2 }}</span></p>
 </div>
 <div class="graph-photo">
-    <img src="{% static 'wea/img/demo_1.png' %}" alt="1">
+    <div class="comp"><img src="{% static 'wea/img/demo_1.png' %}" alt="1"></div>
+    <div class="comp">
+            <table class="table table table-bordered table-success">
+                <tr>
+                    Таблиця "Тривалість температурних режимів":
+                </tr>
+                <tr>
+                    <td class="name">Температура, <sup>o</sup>С</td>
+                    {%for i in d2 %}
+                    <td>{{i.0}}</td>
+                    {%endfor%}
+                </tr>
+                <tr>
+                    <td class="name">Час, год</td>
+                    {%for i in d2 %}
+                    <td>{{i.1}}</td>
+                    {%endfor%}
+                </tr>
 
-    <div class="container">
-        <table class="table table table-bordered table-success">
-            <tr>
-                Таблиця "Тривалість температурних режимів":
-            </tr>
-            <tr>
-                <td class="name">Температура, <sup>o</sup>С</td>
-                {%for i in d2 %}
-                <td>{{i.0}}</td>
-                {%endfor%}
-            </tr>
-            <tr>
-                <td class="name">Час, год</td>
-                {%for i in d2 %}
-                <td>{{i.1}}</td>
-                {%endfor%}
-            </tr>
-
-        </table>
+            </table>
+        <img src="{% static 'wea/img/demo_2.png' %}" alt="2">
     </div>
-    <img src="{% static 'wea/img/demo_2.png' %}" alt="2">
-
-    <img src="{% static 'wea/img/demo_3.png' %}" alt="3">
-
-    <div class="container">
-        <table class="table table table-bordered table-success">
-            <tr>
-                Таблиця "Тривалість режимів вітрової активності":
-            </tr>
-            <tr>
-                <td class="name">Швидкість, м/с</td>
-                {%for i in d4 %}
-                <td>{{i.0}}</td>
-                {%endfor%}
-            </tr>
-            <tr>
-                <td class="name">Час, год</td>
-                {%for i in d4 %}
-                <td>{{i.1}}</td>
-                {%endfor%}
-            </tr>
-        </table>
+    <div class="comp"><img src="{% static 'wea/img/demo_3.png' %}" alt="3"></div>
+    <div class="comp">
+            <table class="table table table-bordered table-success">
+                <tr>
+                    Таблиця "Тривалість режимів вітрової активності":
+                </tr>
+                <tr>
+                    <td class="name">Швидкість, м/с</td>
+                    {%for i in d4 %}
+                    <td>{{i.0}}</td>
+                    {%endfor%}
+                </tr>
+                <tr>
+                    <td class="name">Час, год</td>
+                    {%for i in d4 %}
+                    <td>{{i.1}}</td>
+                    {%endfor%}
+                </tr>
+            </table>
+        <img src="{% static 'wea/img/demo_4.png' %}" alt="4">
     </div>
-    <img src="{% static 'wea/img/demo_4.png' %}" alt="4">
 </div>
 
-<a href="{% url 'report' %}">Відправити звіт</a>
+<div class="butt"><button type="button" class="btn btn-outline-light"><a href="{% url 'report' %}" class="link-success">Відправити звіт</a></button></div>
 <!--<a>{{ request.path }}</a>-->
 {% endblock %}
