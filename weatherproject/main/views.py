@@ -1,3 +1,4 @@
+import datetime
 from array import array
 
 import requests
@@ -9,9 +10,6 @@ from .graphics import *
 from .models import City
 
 import pdfkit
-
-
-
 
 import smtplib
 import os
@@ -109,7 +107,9 @@ def graphic_info(request):
 
 
 def info(request):
-    return render(request, 'main/info.html')
+    date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M')
+    data={'date':date}
+    return render(request, 'main/info.html',data)
 
 
 def weatherCity(request):
@@ -191,4 +191,6 @@ def report(request):
     mail.login(user, password)
     mail.sendmail(sender, recipients, msg.as_string())
     mail.quit()
-    return render(request, 'main/report_done.html')
+    date=datetime.datetime.today().strftime('%Y-%m-%d %H:%M')
+    data={'date':date}
+    return render(request, 'main/report_done.html',data)
