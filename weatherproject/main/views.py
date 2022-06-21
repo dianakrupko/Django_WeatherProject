@@ -97,6 +97,10 @@ def graphic_info(request):
     s2=graphics_2(city, date1, date2)
     s4 = graphics_4(city, date1, date2)
     # data = {'d': s}
+    for s in s2:
+        s[1] /= 4
+    for s in s4:
+        s[1] /= 4
     context = {'d2': s2,'d4': s4,'form': form, 'city': cities[city],
                'date1': date1,
                'date2': date2}
@@ -155,7 +159,7 @@ def report(request):
 
     server = 'smtp.ukr.net'
     user = 'dianakru@ukr.net'
-    password = 'k3KQVjTaaKtbEUaR'
+    password = ''
 
     recipients = ['dnkrupkoo@gmail.com', 'karaimivanna@gmail.com']
     sender = 'dianakru@ukr.net'

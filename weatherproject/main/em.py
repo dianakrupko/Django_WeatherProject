@@ -8,7 +8,7 @@ from platform import python_version
 
 server = 'smtp.ukr.net'
 user = 'dianakru@ukr.net'
-password = 'k3KQVjTaaKtbEUaR'
+password = ''
 
 recipients = ['dnkrupkoo@gmail.com', 'didididididi.kk@gmail.com']
 sender = 'dianakru@ukr.net'
