@@ -45,8 +45,8 @@ def graphics_2(city, date_1, date_2):
     autolabel(ax.patches, s[:,1] / 4, height_factor=1.01)
     # plt.show()
     plt.savefig("static/wea/img/demo_2.png")
-
     plt.gcf().clear()
+    print(s)
     return s
 
 
@@ -67,6 +67,7 @@ def graphics_4(city, date_1, date_2):
     ax.bar(s[:, 0], s[:, 1]/4)
     plt.savefig('static/wea/img/demo_4.png')
     plt.gcf().clear()
+    # print(s[1][0])
     return s
 
 

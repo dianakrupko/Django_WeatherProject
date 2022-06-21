@@ -1,8 +1,41 @@
+<style>
+
+
+    .name{
+        width:50px;
+        background:#C1C3CF;
+
+    }
+
+    td{
+        width:50px;
+    }
+
+</style>
 {% extends 'main/layout.html' %}
 {% load static %}
 
 {% block title %}Контакти{% endblock %}
-
 {% block content %}
-<img src="{% static 'wea/img/demo_4.png' %}" alt="aa">
+<h2>{{ d }}</h2>
+<div class="container">
+    <table class="table table table-bordered table-success">
+        <tr>
+            Таблиця "Тривалість температурних режимів":
+        </tr>
+        <tr>
+            <td class="name">Температура, <sup>o</sup>С</td>
+            {%for i in d %}
+            <td>{{i.0}}</td>
+            {%endfor%}
+        </tr>
+        <tr>
+            <td class="name">Час, год</td>
+            {%for i in d %}
+            <td>{{i.1}}</td>
+            {%endfor%}
+        </tr>
+
+    </table>
+</div>
 {% endblock %}

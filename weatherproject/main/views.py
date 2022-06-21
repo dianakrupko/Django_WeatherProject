@@ -1,3 +1,5 @@
+from array import array
+
 import requests
 from django.shortcuts import render, redirect
 
@@ -44,7 +46,10 @@ def about(request):
 
 
 def contacts(request):
-    return render(request, 'main/contacts.html')
+    s=graphics_2('lviv', '2012-01-01 00:00', '2012-01-14 00:00')
+    data={'d':s}
+    # graphics_4('kyiv', '2012-01-01 00:00', '2012-01-14 00:00')
+    return render(request, 'main/contacts.html',data)
 
 
 def graphics(request):
@@ -87,13 +92,16 @@ def graphic_info(request):
         date2 = form.cleaned_data.get("date2")
         # print(form.cleaned_data)
 
-    context = {'form': form, 'city': cities[city],
+    graphics_3(city, date1, date2)
+    # graphics_2(city, date1, date2)
+    # graphics_4(city, date1, date2)
+    graphics_1(city, date1, date2)
+    s2=graphics_2(city, date1, date2)
+    s4 = graphics_4(city, date1, date2)
+    # data = {'d': s}
+    context = {'d2': s2,'d4': s4,'form': form, 'city': cities[city],
                'date1': date1,
                'date2': date2}
-    graphics_3(city, date1, date2)
-    graphics_2(city, date1, date2)
-    graphics_4(city, date1, date2)
-    graphics_1(city, date1, date2)
     path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
     pdfkit.from_url("http://127.0.0.1:8000/info", "zvit.pdf", configuration=config)

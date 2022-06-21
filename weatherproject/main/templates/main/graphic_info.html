@@ -23,6 +23,9 @@
     }
 
 
+
+
+
 </style>
 {% extends 'main/layout.html' %}
 {% load static %}
@@ -36,10 +39,50 @@
 </div>
 <div class="graph-photo">
     <img src="{% static 'wea/img/demo_1.png' %}" alt="1">
-    <p>Таблиця:</p>
+
+    <div class="container">
+        <table class="table table table-bordered table-success">
+            <tr>
+                Таблиця "Тривалість температурних режимів":
+            </tr>
+            <tr>
+                <td class="name">Температура, <sup>o</sup>С</td>
+                {%for i in d2 %}
+                <td>{{i.0}}</td>
+                {%endfor%}
+            </tr>
+            <tr>
+                <td class="name">Час, год</td>
+                {%for i in d2 %}
+                <td>{{i.1}}</td>
+                {%endfor%}
+            </tr>
+
+        </table>
+    </div>
     <img src="{% static 'wea/img/demo_2.png' %}" alt="2">
+
     <img src="{% static 'wea/img/demo_3.png' %}" alt="3">
-    <p>Таблиця:</p>
+
+    <div class="container">
+        <table class="table table table-bordered table-success">
+            <tr>
+                Таблиця "Тривалість режимів вітрової активності":
+            </tr>
+            <tr>
+                <td class="name">Швидкість, м/с</td>
+                {%for i in d4 %}
+                <td>{{i.0}}</td>
+                {%endfor%}
+            </tr>
+            <tr>
+                <td class="name">Час, год</td>
+                {%for i in d4 %}
+                <td>{{i.1}}</td>
+                {%endfor%}
+            </tr>
+        </table>
+    </div>
     <img src="{% static 'wea/img/demo_4.png' %}" alt="4">
 </div>
 
