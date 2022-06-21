@@ -8,6 +8,18 @@ from .models import City
 
 import pdfkit
 
+
+
+
+import smtplib
+import os
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+from platform import python_version
+
+
 # import aspose.words as aw
 #
 # doc = aw.Document("Input.html")
@@ -132,4 +144,43 @@ def report(request):
     # config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
     # pdfkit.from_url("http://127.0.0.1:8000/info", "zvit.pdf", configuration=config)
     # mail.sendmail(sender, recipients, msg.as_string())
+
+    server = 'smtp.ukr.net'
+    user = 'dianakru@ukr.net'
+    password = 'k3KQVjTaaKtbEUaR'
+
+    recipients = ['dnkrupkoo@gmail.com', 'karaimivanna@gmail.com']
+    sender = 'dianakru@ukr.net'
+    subject = 'Звіт'
+    # text = 'Текст  sdf sdf sdf sdaf <b>sdaf sdf</b> fg hsdgh <h1>f sd</h1> dfhjhgs sd gsdfg sdf'
+    # html = '<html><head></head><body><p>' + text + '</p></body></html>'
+
+    filepath = "zvit.pdf"
+    basename = os.path.basename(filepath)
+    filesize = os.path.getsize(filepath)
+
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = subject
+    msg['From'] = 'Diana Krupko <' + sender + '>'
+    msg['To'] = ', '.join(recipients)
+    msg['Reply-To'] = sender
+    msg['Return-Path'] = sender
+    msg['X-Mailer'] = 'Python/' + (python_version())
+
+    # part_text = MIMEText(text, 'plain')
+    # part_html = MIMEText(html, 'html')
+    part_file = MIMEBase('application', 'octet-stream; name="{}"'.format(basename))
+    part_file.set_payload(open(filepath, "rb").read())
+    part_file.add_header('Content-Description', basename)
+    part_file.add_header('Content-Disposition', 'attachment; filename="{}"; size={}'.format(basename, filesize))
+    encoders.encode_base64(part_file)
+
+    # msg.attach(part_text)
+    # msg.attach(part_html)
+    msg.attach(part_file)
+
+    mail = smtplib.SMTP_SSL(server)
+    mail.login(user, password)
+    mail.sendmail(sender, recipients, msg.as_string())
+    mail.quit()
     return render(request, 'main/report_done.html')
